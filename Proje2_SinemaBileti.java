@@ -1,7 +1,8 @@
 /**
- * Ad Soyad: [Adınızı Soyadınızı yazın]
+ * Ad:Mustafa
+ * Soyad:Şahingöz
  * Öğrenci No:250542008
- * Tarih: [13.11.2025]
+ * Tarih:13.11.2025
  */
 
 import java.util.Scanner;
@@ -69,3 +70,4 @@ public class SinemaBileti {
     }
 
     // 6. Nihai fiyat hesaplama
+
