@@ -1,75 +1,73 @@
 /**
- * Ad Soyad:Mustafa
- * Numara:Şahingöz
- *Öğrenci No:250542008
- * Tarih: [13.11.2025]
+ * Ad:Mustafa
+ * Soyad:Şahingöz
+ * Numara:250542008
+ * Tarih:13.11.2025
  */
+
+
+
+
+
+
+
+
+
+
+
 
 import java.util.Scanner;
 
-public class NotSistemi {
-
-    // 1. Ortalama hesaplama metodu
-    public static double calculateAverage(double vize, double fin, double odev) {
-        return (vize * 0.3) + (fin * 0.4) + (odev * 0.3);
-    }
-
-    // 2. Geçme durumu kontrol metodu
-    public static boolean isPassingGrade(double ortalama) {
-        return ortalama >= 50.0;
-    }
-
-    // 3. Harf notu belirleme metodu
-    public static char getLetterGrade(double ort) {
-        if (ort >= 90) return 'A';
-        else if (ort >= 80) return 'B';
-        else if (ort >= 70) return 'C';
-        else if (ort >= 60) return 'D';
-        else return 'F';
-    }
-
-    // 4. Onur listesi kontrol metodu
-    public static boolean isHonorList(double ort, double vize, double fin, double odev) {
-        return (ort >= 85 && vize >= 70 && fin >= 70 && odev >= 70);
-    }
-
-    // 5. Bütünleme hakkı kontrol metodu
-    public static boolean hasRetakeRight(double ort) {
-        return (ort >= 40 && ort < 50);
-    }
+public class SinemaBileti{
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
 
-        System.out.print("Vize notunu giriniz: ");
-        double vize = input.nextDouble();
+        System.out.print("Gün (1=Pzt...7=Paz): ");
+        int gun = in.nextInt();
 
-        System.out.print("Final notunu giriniz: ");
-        double fin = input.nextDouble();
+        System.out.print("Saat (8-23): ");
+        int saat = in.nextInt();
 
-        System.out.print("Ödev notunu giriniz: ");
-        double odev = input.nextDouble();
+        System.out.print("Yaş: ");
+        int yas = in.nextInt();
 
-        double ort = calculateAverage(vize, fin, odev);
+        System.out.print("Meslek (1=Öğrenci, 2=Öğretmen, 3=Diğer): ");
+        int meslek = in.nextInt();
 
-        System.out.println("\n=== ÖĞRENCİ NOT RAPORU ===");
-        System.out.printf("Vize Notu   : %.1f%n", vize);
-        System.out.printf("Final Notu  : %.1f%n", fin);
-        System.out.printf("Ödev Notu   : %.1f%n", odev);
-        System.out.println("------------------------------");
-        System.out.printf("Ortalama    : %.1f%n", ort);
-        System.out.printf("Harf Notu   : %c%n", getLetterGrade(ort));
+        System.out.print("Film türü (1=2D, 2=3D, 3=IMAX, 4=4DX): ");
+        int tur = in.nextInt();
 
-        if (isPassingGrade(ort))
-            System.out.println("Durum       : GEÇTİ");
-        else
-            System.out.println("Durum       : KALDI");
+        // Temel fiyat
+        boolean haftaSonu = (gun == 6 || gun == 7);
+        boolean matine = (saat < 12);
+        double fiyat;
 
-        System.out.print("Onur Listesi: ");
-        System.out.println(isHonorList(ort, vize, fin, odev) ? "EVET" : "HAYIR");
+        if (!haftaSonu && matine) fiyat = 45;
+        else if (!haftaSonu) fiyat = 65;
+        else if (haftaSonu && matine) fiyat = 55;
+        else fiyat = 85;
 
-        System.out.print("Bütünleme   : ");
-        System.out.println(hasRetakeRight(ort) ? "VAR" : "YOK");
+        // İndirim
+        double indirim = 0;
+        if (meslek == 1) indirim = (haftaSonu ? 0.15 : 0.20);
+        if (meslek == 2 && gun == 3) indirim = 0.35;
+        if (yas >= 65) indirim = 0.30;
+        if (yas < 12) indirim = 0.25;
+
+        // Ekstra ücret
+        double ekstra = 0;
+        if (tur == 2) ekstra = 25;
+        else if (tur == 3) ekstra = 35;
+        else if (tur == 4) ekstra = 50;
+
+        // Toplam
+        double toplam = fiyat - (fiyat * indirim) + ekstra;
+
+        System.out.println("\n=== BİLET BİLGİSİ ===");
+        System.out.printf("Temel Fiyat : %.2f TL%n", fiyat);
+        System.out.printf("İndirim     : %.0f%%%n", indirim * 100);
+        System.out.printf("Ekstra Ücret: %.2f TL%n", ekstra);
+        System.out.printf("Toplam      : %.2f TL%n", toplam);
     }
 }
-
