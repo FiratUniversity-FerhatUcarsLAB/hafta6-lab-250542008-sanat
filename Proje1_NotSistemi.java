@@ -1,6 +1,7 @@
 /**
  * Ad Soyad:Mustafa
  * Numara:Şahingöz
+ *Öğrenci No:250542008
  * Tarih: [13.11.2025]
  */
 
@@ -71,3 +72,4 @@ public class NotSistemi {
         System.out.println(hasRetakeRight(ort) ? "VAR" : "YOK");
     }
 }
+
