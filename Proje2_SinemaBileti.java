@@ -1,7 +1,7 @@
 /**
 * Ad Soyad: [Mustafa Şahingöz]
 * Numara: [250542008]
-* Proje: [NotSistemi]
+* Proje: [SinemaBileti]
 * Tarih: [26.11.2025]
 */
 
@@ -87,4 +87,5 @@ public class SinemaBileti {
         sc.close();
     }
 }
+
 
